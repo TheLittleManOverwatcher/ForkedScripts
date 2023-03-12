@@ -151,7 +151,7 @@ end
 StarterGui:SetCore("SendNotification", {
     Title = "discord.gg/rips",
     Text = "Loading FPS Booster...",
-    Duration = 2,
+    Duration = 1,
     Button1 = "Okay"
 })
 coroutine.wrap(pcall)(function()
@@ -169,7 +169,7 @@ coroutine.wrap(pcall)(function()
         StarterGui:SetCore("SendNotification", {
             Title = "discord.gg/rips",
             Text = "Low Water Graphics Enabled",
-            Duration = 2,
+            Duration = 1,
             Button1 = "Okay"
         })
         warn("Low Water Graphics Enabled")
@@ -183,7 +183,7 @@ coroutine.wrap(pcall)(function()
         StarterGui:SetCore("SendNotification", {
             Title = "discord.gg/rips",
             Text = "No Shadows Enabled",
-            Duration = 2,
+            Duration = 1,
             Button1 = "Okay"
         })
         warn("No Shadows Enabled")
@@ -195,7 +195,7 @@ coroutine.wrap(pcall)(function()
         StarterGui:SetCore("SendNotification", {
             Title = "discord.gg/rips",
             Text = "Low Rendering Enabled",
-            Duration = 2,
+            Duration = 1,
             Button1 = "Okay"
         })
         warn("Low Rendering Enabled")
@@ -209,7 +209,7 @@ coroutine.wrap(pcall)(function()
                 StarterGui:SetCore("SendNotification", {
                     Title = "discord.gg/rips",
                     Text = "FPS Capped to " .. tostring(_G.Settings["FPS Cap"] or (_G.Settings.Other and _G.Settings.Other["FPS Cap"])),
-                    Duration = 5,
+                    Duration = 1,
                     Button1 = "Okay"
                 })
                 warn("FPS Capped to " .. tostring(_G.Settings["FPS Cap"] or (_G.Settings.Other and _G.Settings.Other["FPS Cap"])))
@@ -218,7 +218,7 @@ coroutine.wrap(pcall)(function()
                 StarterGui:SetCore("SendNotification", {
                     Title = "discord.gg/rips",
                     Text = "FPS Uncapped",
-                    Duration = 2,
+                    Duration = 1,
                     Button1 = "Okay"
                 })
                 warn("FPS Uncapped")
@@ -239,7 +239,7 @@ local WaitNumber = 500
 StarterGui:SetCore("SendNotification", {
     Title = "discord.gg/rips",
     Text = "Checking " .. #Descendants .. " Instances...",
-    Duration = 2,
+    Duration = 1,
     Button1 = "Okay"
 })
 warn("Checking " .. #Descendants .. " Instances...")
@@ -254,7 +254,7 @@ end
 StarterGui:SetCore("SendNotification", {
     Title = "discord.gg/rips",
     Text = "FPS Booster Loaded!",
-    Duration = 3,
+    Duration = 2,
     Button1 = "Okay"
 })
 warn("FPS Booster Loaded!")
