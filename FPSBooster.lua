@@ -1,8 +1,6 @@
 -- MADE BY RIP#6666
--- send issues or suggestions to my discord: discord.gg/rips
-
-
-
+-- Edited by Mr. History
+-- send issues or suggestions to his Discord: discord.gg/rips
 
 if not game:IsLoaded() then
     repeat
