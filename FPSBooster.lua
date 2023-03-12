@@ -151,7 +151,7 @@ end
 StarterGui:SetCore("SendNotification", {
     Title = "discord.gg/rips",
     Text = "Loading FPS Booster...",
-    Duration = 2
+    Duration = 2,
     Button1 = "Okay"
 })
 coroutine.wrap(pcall)(function()
@@ -254,7 +254,7 @@ end
 StarterGui:SetCore("SendNotification", {
     Title = "discord.gg/rips",
     Text = "FPS Booster Loaded!",
-    Duration = 3
+    Duration = 3,
     Button1 = "Okay"
 })
 warn("FPS Booster Loaded!")
