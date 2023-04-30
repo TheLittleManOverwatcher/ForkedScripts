@@ -18,7 +18,8 @@ if not _G.Settings then
             LowDetail = true -- No Longer Used (Will be removed in future update)
         },
         Images = {
-            Invisible = false,
+            Invisible = true,
+            LowDetail = false, -- No Longer Used (Will be removed in future update)
             Destroy = false
         },
         Other = {
@@ -26,7 +27,7 @@ if not _G.Settings then
             ["No Particles"] = true,
             ["No Camera Effects"] = true,
             ["No Explosions"] = true, -- Not recommended for PVP games
-            ["No Clothes"] = false,
+            ["No Clothes"] = true,
             ["Low Water Graphics"] = true,
             ["No Shadows"] = true,
             ["Low Rendering"] = true,
@@ -147,6 +148,7 @@ local function CheckIfBad(Instance)
         end
     end
 end
+
 coroutine.wrap(pcall)(function()
     if (_G.Settings["Low Water Graphics"] or (_G.Settings.Other and _G.Settings.Other["Low Water Graphics"])) then
         if not workspace:FindFirstChildOfClass("Terrain") then
@@ -159,6 +161,7 @@ coroutine.wrap(pcall)(function()
         workspace:FindFirstChildOfClass("Terrain").WaterReflectance = 0
         workspace:FindFirstChildOfClass("Terrain").WaterTransparency = 0
         sethiddenproperty(workspace:FindFirstChildOfClass("Terrain"), "Decoration", false)
+        warn("Low Water Graphics Enabled")
     end
 end)
 coroutine.wrap(pcall)(function()
@@ -166,11 +169,13 @@ coroutine.wrap(pcall)(function()
         Lighting.GlobalShadows = false
         Lighting.FogEnd = 9e9
         sethiddenproperty(Lighting, "Technology", 2)
+        warn("No Shadows Enabled")
     end
 end)
 coroutine.wrap(pcall)(function()
     if _G.Settings["Low Rendering"] or (_G.Settings.Other and _G.Settings.Other["Low Rendering"]) then
         settings().Rendering.QualityLevel = 1
+        warn("Low Rendering Enabled")
     end
 end)
 coroutine.wrap(pcall)(function()
@@ -178,12 +183,24 @@ coroutine.wrap(pcall)(function()
         if setfpscap then
             if type(_G.Settings["FPS Cap"] or (_G.Settings.Other and _G.Settings.Other["FPS Cap"])) == "string" or type(_G.Settings["FPS Cap"] or (_G.Settings.Other and _G.Settings.Other["FPS Cap"])) == "number" then
                 setfpscap(tonumber(_G.Settings["FPS Cap"] or (_G.Settings.Other and _G.Settings.Other["FPS Cap"])))
-
+                StarterGui:SetCore("SendNotification", {
+                    Title = "discord.gg/rips",
+                    Text = "FPS Capped to " .. tostring(_G.Settings["FPS Cap"] or (_G.Settings.Other and _G.Settings.Other["FPS Cap"])),
+                    Duration = 1,
+                    Button1 = "Okay"
+                })
                 warn("FPS Capped to " .. tostring(_G.Settings["FPS Cap"] or (_G.Settings.Other and _G.Settings.Other["FPS Cap"])))
             elseif _G.Settings["FPS Cap"] or (_G.Settings.Other and _G.Settings.Other["FPS Cap"]) == true then
                 setfpscap(1e6)
+                warn("FPS Uncapped")
             end
+        else
+            warn("FPS Cap Failed")
+        end
+    end
 end)
+
+
 local Descendants = ReturnDescendants()
 local WaitNumber = 500
 
@@ -196,4 +213,5 @@ for i, v in pairs(Descendants) do
         WaitNumber = WaitNumber + 500
     end
 end
+
 game.DescendantAdded:Connect(CheckIfBad)
