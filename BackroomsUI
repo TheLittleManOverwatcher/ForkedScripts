@@ -13,8 +13,8 @@ Flux:Notification("Removed successfully!", "Alright")
 end)
 
 tab:Button("FPS", "Increases FPS.", function()
-
-Flux:Notification("Boost successfully!", "Alright")
+loadstring(game:HttpGet"https://raw.githubusercontent.com/TheLittleManOverwatcher/ForkedScripts/main/BackroomsFP")()
+Flux:Notification("Loaded successfully!", "Alright")
 end)
 
 tab:Button("Music", "Changes the ambience.", function()
