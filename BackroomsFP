@@ -34,7 +34,7 @@ if not _G.Settings then
             Destroy = false
         },
         Images = {
-            Invisible = true,
+            Invisible = false,
             Destroy = false
         },
         Explosions = {
@@ -43,7 +43,7 @@ if not _G.Settings then
             Destroy = false -- Not recommended for PVP games
         },
         Particles = {
-            Invisible = true,
+            Invisible = false,
             Destroy = false
         },
         TextLabels = {
