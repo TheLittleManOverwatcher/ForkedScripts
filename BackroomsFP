@@ -67,7 +67,7 @@ if not _G.Settings then
             ["Low Rendering"] = true,
             ["Low Quality Parts"] = true,
             ["Low Quality Models"] = true,
-            ["Reset Materials"] = true,
+            ["Reset Materials"] = false,
             ["Lower Quality MeshParts"] = true
         }
     }
