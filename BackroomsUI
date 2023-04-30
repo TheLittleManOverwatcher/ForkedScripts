@@ -12,9 +12,14 @@ game.Players.LocalPlayer.PlayerGui.vhs:Destroy()
 Flux:Notification("Removed successfully!", "Alright")
 end)
 
+tab:Button("FPS", "Increases FPS.", function()
+
+Flux:Notification("Boost successfully!", "Alright")
+end)
+
 tab:Button("Music", "Changes the ambience.", function()
 game:GetService("Workspace")["Creepy Ambience"].SoundId = "rbxassetid://1842842210"
-Flux:Notification("Removed successfully!", "Alright")
+Flux:Notification("Changed successfully!", "Alright")
 end)
 
 tab:Toggle("Nothing", "Nothing yet!", function(t)
