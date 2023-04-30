@@ -22,6 +22,12 @@ game:GetService("Workspace")["Creepy Ambience"].SoundId = "rbxassetid://18428422
 Flux:Notification("Changed successfully!", "Alright")
 end)
 
+tab:Button("Time", "Makes the time unlimited.", function()
+game.Players.LocalPlayer.PlayerGui.Time.Frame.TextLabel.LocalScript:Destroy()
+game.Players.LocalPlayer.PlayerGui.Time.Frame.TextLabel.Text = "9:99"
+Flux:Notification("Changed successfully!", "Alright")
+end)
+
 tab:Toggle("Nothing", "Nothing yet!", function(t)
 print(t)
 
