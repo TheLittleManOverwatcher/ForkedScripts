@@ -1,12 +1,27 @@
 local Flux = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/fluxlib.txt")()
 local win = Flux:Window("PREVIEW", "Baseplate", Color3.fromRGB(255, 110, 48), Enum.KeyCode.LeftControl)
 
-local Window = Library.CreateLib("Title", "DarkTheme")
-local ESP = Window:NewTab("ESP")
+
+
+local win = Flux:Window("PREVIEW", "Baseplate", Color3.fromRGB(255, 110, 48), Enum.KeyCode.LeftControl)
+local tab = win:Tab("Tab 1", "http://www.roblox.com/asset/?id=6023426915")
+
+
+tab:Button("ESP", "Outlines where keys are.", function()
+Flux:Notification("Outlined successfully!", "Alright")
+end)
+
+tab:Button("VHS", "Removes the VHS effect.", function()
+Flux:Notification("Outlined successfully!", "Alright")
+end)
+
+tab:Toggle("Auto-Farm Coins", "Automatically collects coins for you!", function(t)
+print(t)
+
+
 local Teleports = Window:NewTab("Teleports")
 
 
 
-ESP:NewButton("Keys", "Outlines where the keys are.", function()
-   -- teleport function
-end)
+-- tab:Label("This is just a label.")
+-- tab:Line()
