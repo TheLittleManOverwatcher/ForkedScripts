@@ -30,6 +30,15 @@ Flux:Notification("Changed successfully!", "Alright")
 end)
 
 tab:Toggle("Speed", "Sprinting with this enabled will untoggle this!", function(t)
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 20
+
+local Run = game:GetService("RunService")	
+	
+Run.Heartbeat:Connect(function()
+if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed == 8 then
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 20
+end
+end)
+
+Flux:Notification("Changed successfully!", "Alright")
 
 end)
