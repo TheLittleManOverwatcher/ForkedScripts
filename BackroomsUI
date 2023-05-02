@@ -29,6 +29,8 @@ Flux:Notification("Changed successfully!", "Alright")
 end)
 
 tab:Toggle("Nothing", "Nothing yet!", function(t)
-print(t)
+
+local WS = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
+WS = 20
 
 end)
