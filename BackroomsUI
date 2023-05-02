@@ -28,7 +28,7 @@ game.Players.LocalPlayer.PlayerGui.Time.Frame.TextLabel.Text = "9:99"
 Flux:Notification("Changed successfully!", "Alright")
 end)
 
-tab:Toggle("Nothing", "Nothing yet!", function(t)
+tab:Toggle("Speed", "Sprinting with this enabled will untoggle this!", function(t)
 
 local WS = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
 WS = 20
