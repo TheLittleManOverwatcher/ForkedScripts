@@ -30,8 +30,6 @@ Flux:Notification("Changed successfully!", "Alright")
 end)
 
 tab:Toggle("Speed", "Sprinting with this enabled will untoggle this!", function(t)
-
-local WS = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
-WS = 20
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 20
 
 end)
