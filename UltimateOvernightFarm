@@ -1,0 +1,125 @@
+-- What each section does
+-- Anti-AFK allows gameplay of over 20+ minutes without needing user input to stay connected.
+
+-- FPS Saver disables rendering, which allows you to save computer resources, switch to 
+-- another tab on your computer so this can work!
+
+-- KickWebhook sends out a webhook via Discord to notify you that you've been kicked,
+-- this is incase of either Game shutdowns or the such.
+
+-- UWPBooster is a booster meant to prevent lag from the UWP version of Roblox, via
+-- spamming Warn in console.
+
+-- Protection is in case a player is suspicious of your long stay and reports you,
+-- this will not show any UIs used in the report screenshot sent to Roblox.
+
+-- KickSound is used incase you're using your computer still. A sound will play
+-- if you've been kicked.
+
+
+-- Anti-AFK
+repeat wait() until game:IsLoaded()
+    game:GetService("Players").LocalPlayer.Idled:Connect(function()
+    game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+end)
+
+-- FPS Saver
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+local WindowFocusReleasedFunction = function()
+	RunService:Set3dRenderingEnabled(false)
+	setfpscap(10)
+	return
+end
+
+local WindowFocusedFunction = function()
+	RunService:Set3dRenderingEnabled(true)
+	setfpscap(360)
+	return
+end
+
+local Initialize = function()
+	UserInputService.WindowFocusReleased:Connect(WindowFocusReleasedFunction)
+	UserInputService.WindowFocused:Connect(WindowFocusedFunction)
+	return
+end
+Initialize()
+
+-- Kick Webhook
+local GuiService = game:GetService('GuiService')
+local hook = "COPY"
+local data = {
+   ["content"] = "YOU DISCONNECTED! RECONNECT OR YOU'LL LOSE TIME AND MONEY!"
+}
+
+
+GuiService.ErrorMessageChanged:Connect(function()
+   local ErrorCode = GuiService:GetErrorCode().Value
+
+   if ErrorCode <= Enum.ConnectionError.PlacelaunchOtherError.Value and ErrorCode >= Enum.ConnectionError.DisconnectErrors.Value then
+       for i = 1,10 do
+           syn.request({
+               Url = hook,
+               Method = "POST",
+               Headers = {["Content-Type"] = "application/json"},
+               Body = game:GetService("HttpService"):JSONEncode(data)
+           })
+       end
+   end
+end)
+
+-- UWPBooster
+getgenv().boostFPS = true
+
+local vim = game:GetService("VirtualInputManager")
+setfpscap(5000)
+
+game.DescendantAdded:Connect(function(d)
+   if d.Name == "MainView" and d.Parent.Name == "DevConsoleUI" and boostFPS then
+       task.wait()
+       local screen = d.Parent.Parent.Parent
+       screen.Enabled = false;
+       d.Visible = false;
+   end
+end)
+
+vim:SendKeyEvent(true, "F9", 0, game)    
+wait()
+vim:SendKeyEvent(false, "F9", 0, game)  
+
+while true do
+   task.wait()
+   if not boostFPS then
+       continue;
+   end
+
+   warn("")
+end
+
+-- Protection
+setfflag("AbuseReportScreenshot", "False")
+setfflag("AbuseReportScreenshotPercentage", "0")
+
+-- Sound Kick
+local GuiService = game:GetService'GuiService'
+local SoundDelay = 5 -- Delay in seconds to play the sound
+
+GuiService.ErrorMessageChanged:Connect(function()
+    local Code = GuiService:GetErrorCode().Value
+
+    if Code >= Enum.ConnectionError.DisconnectErrors.Value and Code <= Enum.ConnectionError.PlacelaunchOtherError.Value then -- ignores teleport errors/etc
+        -- Uncomment the line below by removing the dashes if you want to force the game volume to be turned up
+        -- UserSettings():GetService'UserGameSettings'.MasterVolume = 0.5
+
+        local Sound = Instance.new('Sound', game:GetService'SoundService')
+        Sound.SoundId = 'rbxassetid://4590662766'
+        Sound.Volume = 1
+       
+        while true do
+            Sound:Play()
+
+            task.wait(SoundDelay)
+        end
+    end
+end)
